@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import {MdMenu} from "react-icons/md"
+import {AiOutlineClose} from "react-icons/ai"
 
 const Header = () => {
+  const[isOpen , setIsOpen] = useState(false)
   return (
     <>
-      <nav className="bg-white shadow dark:bg-gray-800">
+     <nav className="bg-white shadow dark:bg-gray-800">
         <div className="container px-6 py-4 mx-auto">
           <div className="lg:flex lg:items-center lg:justify-between">
             <div className="flex items-center justify-between">
@@ -19,22 +22,23 @@ const Header = () => {
               {/* <!-- Mobile menu button --> */}
               <div className="flex lg:hidden">
                 <button
+                onClick={()=>setIsOpen(!isOpen)}
                   type="button"
                   className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
                   aria-label="toggle menu"
                 >
-                  <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
+                </button>
+                <svg name={isOpen?"close":"evenodd"}  viewBox="0 0 24 24" className="w-6 h-6 fill-current">
                     <path
                       fillRule="evenodd"
                       d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
                     ></path>
                   </svg>
-                </button>
               </div>
             </div>
 
             {/* <!-- Mobile Menu open: "block", Menu closed: "hidden" --> */}
-            <div className="hidden -mx-4 lg:flex lg:items-center">
+            <div className={`hidden -mx-4 lg:flex lg:items-center ${isOpen?"top-5":"-top-5"}`}>
               <a
                 href="#"
                 className="block mx-4 mt-2 text-md text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400"
@@ -42,7 +46,7 @@ const Header = () => {
                 Home
               </a>
               <a
-                href="#"
+                href="/about"
                 className="block mx-4 mt-2 text-md text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-indigo-400"
               >
                 About
@@ -74,3 +78,4 @@ const Header = () => {
 };
 
 export default Header;
+
